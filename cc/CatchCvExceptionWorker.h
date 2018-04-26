@@ -1,14 +1,14 @@
-#include "Workers.h"
+#include "NativeNodeUtils.h"
 
 #ifndef __FF_CATCHCVEXCEPTIONWORKER_H__
 #define __FF_CATCHCVEXCEPTIONWORKER_H__
 
-struct CatchCvExceptionWorker : public SimpleWorker {
+struct CatchCvExceptionWorker : public FF::SimpleWorker {
 public:
 	std::string execute() {
 		try {
 			return executeCatchCvExceptionWorker();
-		} catch (std::exception e) {
+		} catch (std::exception &e) {
 			return std::string(e.what());
 		}
 	}

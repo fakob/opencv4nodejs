@@ -1,6 +1,6 @@
 {
   "name": "opencv4nodejs",
-  "version": "4.1.0",
+  "version": "4.3.0",
   "description": "Asynchronous OpenCV 3.x nodejs bindings with JavaScript and TypeScript API.",
   "keywords": [
     "opencv",
@@ -40,8 +40,8 @@
   "dependencies": {
     "macro-inferno": "^0.2.1",
     "nan": "^2.7.0",
-    "native-node-utils": "0.0.5",
-    "opencv-build": "0.0.11"
+    "native-node-utils": "0.1.2",
+    "opencv-build": "^0.0.12"
   },
   "optionalDependencies": {
     "@types/node": ">6"

@@ -79,6 +79,8 @@ export class Mat {
   convertToAsync(type: number, alpha?: number, beta?: number): Promise<Mat>;
   copy(mask?: Mat): Mat;
   copyAsync(mask?: Mat): Promise<Mat>;
+  copyMakeBorder(top: number, bottom: number, left: number, right: number, borderType?: number, value?: number | Vec2 | Vec3 | Vec4): Mat;
+  copyMakeBorderAsync(top: number, bottom: number, left: number, right: number, borderType?: number, value?: number | Vec2 | Vec3 | Vec4): Promise<Mat>;
   copyTo(dst: Mat, mask?: Mat): Mat;
   copyToAsync(dst: Mat, mask?: Mat): Promise<Mat>;
   cornerEigenValsAndVecs(blockSize: number, ksize?: number, borderType?: number): Mat;
@@ -165,6 +167,10 @@ export class Mat {
   getOptimalNewCameraMatrix(distCoeffs: number[], imageSize: Size, alpha: number, newImageSize?: Size, centerPrincipalPoint?: boolean): { out: Mat, validPixROI: Rect };
   getOptimalNewCameraMatrixAsync(distCoeffs: number[], imageSize: Size, alpha: number, newImageSize?: Size, centerPrincipalPoint?: boolean): Promise<{ out: Mat, validPixROI: Rect }>;
   getRegion(region: Rect): Mat;
+  goodFeaturesToTrack(maxCorners: number, qualityLevel: number, minDistance: number, mask?: Mat, blockSize?: number, useHarrisDetector?: boolean, harrisK?: number): Point2[];
+  goodFeaturesToTrackAsync(maxCorners: number, qualityLevel: number, minDistance: number, mask?: Mat, blockSize?: number, useHarrisDetector?: boolean, harrisK?: number): Promise<Point2[]>;
+  goodFeaturesToTrack(maxCorners: number, qualityLevel: number, minDistance: number, mask?: Mat, blockSize?: number, gradientSize?: number, useHarrisDetector?: boolean, harrisK?: number): Point2[];
+  goodFeaturesToTrackAsync(maxCorners: number, qualityLevel: number, minDistance: number, mask?: Mat, blockSize?: number, gradientSize?: number, useHarrisDetector?: boolean, harrisK?: number): Promise<Point2[]>;
   grabCut(mask: Mat, rect: Rect, bgdModel: Mat, fgdModel: Mat, iterCount: number, mode: number): void;
   grabCutAsync(mask: Mat, rect: Rect, bgdModel: Mat, fgdModel: Mat, iterCount: number, mode: number): Promise<void>;
   hDiv(otherMat: Mat): Mat;
@@ -191,7 +197,8 @@ export class Mat {
   matMulDerivAsync(B: Mat): Promise<{ dABdA: Mat, dABdB: Mat }>;
   matchTemplate(template: Mat, method: number, mask?: Mat): Mat;
   matchTemplateAsync(template: Mat, method: number, mask?: Mat): Promise<Mat>;
-  mean(): Mat;
+  mean(): Vec4;
+  meanAsync():  Promise<Vec4>;
   meanStdDev(mask?: Mat): { mean: Mat, stddev: Mat };
   meanStdDevAsync(mask?: Mat): Promise<{ mean: Mat, stddev: Mat }>;
   medianBlur(kSize: number): Mat;
@@ -291,10 +298,6 @@ export class Mat {
   warpPerspectiveAsync(transforMationMatrix: Mat, size?: Size, flags?: number, borderMode?: number): Promise<Mat>;
   watershed(markers: Mat): Mat;
   watershedAsync(markers: Mat): Promise<Mat>;
-  goodFeaturesToTrack(maxCorners: number, qualityLevel: number, minDistance: number, mask?: Mat, blockSize?: number, useHarrisDetector?: boolean, harrisK?: number): Point2[];
-  goodFeaturesToTrackAsync(maxCorners: number, qualityLevel: number, minDistance: number, mask?: Mat, blockSize?: number, useHarrisDetector?: boolean, harrisK?: number): Promise<Point2[]>;
-  goodFeaturesToTrack(maxCorners: number, qualityLevel: number, minDistance: number, mask?: Mat, blockSize?: number, gradientSize?: number, useHarrisDetector?: boolean, harrisK?: number): Point2[];
-  goodFeaturesToTrackAsync(maxCorners: number, qualityLevel: number, minDistance: number, mask?: Mat, blockSize?: number, gradientSize?: number, useHarrisDetector?: boolean, harrisK?: number): Promise<Point2[]>;
 
   static eye(rows: number, cols: number, type: number): Mat;
 }
